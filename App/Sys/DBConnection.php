@@ -22,7 +22,7 @@ class DBConnection
     protected function createConnection()
     {
         try{
-            $this->pdo=new PDO("mysql::host=$this->DBservername;dbname=$this->DBname",$this->DBusername,$this->DBpassword,[
+            $this->pdo=new PDO("mysql:host=$this->DBservername;dbname=$this->DBname",$this->DBusername,$this->DBpassword,[
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => $this->DBfetch_mod
             ]);

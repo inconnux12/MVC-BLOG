@@ -1,0 +1,4 @@
+DB:epiz_28401594_blog
+User:epiz_28401594
+Host:sql213.epizy.com
+Pass:lAVgL79NpZc

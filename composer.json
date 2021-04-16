@@ -14,11 +14,6 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "altorouter/altorouter": "^2.0",
-        "filp/whoops": "^2.12",
-        "fzaninotto/faker": "^1.9"
-    },
-    "require-dev": {
-        "symfony/var-dumper": "^5.2"
+        "altorouter/altorouter": "^2.0"
     }
 }
