@@ -122,8 +122,9 @@ class Post extends DBConnection
      */
     public function displayPosts($i,$q,$tri):array
     {
+        if(isset($i))
+            $i-=1;
         $tri? $t="": $t="DESC";
-        $i-=1;
         return $this->pdo->query("SELECT * FROM publications WHERE title LIKE '".$q."%' ORDER BY id_pub ".$t." LIMIT 12 OFFSET ". 12*$i)->fetchAll();
     }
     /**
@@ -135,7 +136,10 @@ class Post extends DBConnection
      * @param  mixed $tri
      * @return array
      */
-    public function displayPostsByCats($id,$q,$i,$tri):array{
+    public function displayPostsByCats($id,$q,$i,$tri):array
+    {
+        if(isset($i))
+            $i-=1;
         $tri? $t="": $t="DESC";
         return $this->pdo->query("SELECT * FROM publications WHERE id_cat='".$id."' AND title LIKE '".$q."%' ORDER BY id_pub ".$t." LIMIT 12 OFFSET ". 12*$i)->fetchAll();
     }    
