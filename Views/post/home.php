@@ -10,8 +10,6 @@ $tri=(int)($_GET['r'] ?? "0");
 $pag=($page->getPositive((int)($_GET['p'] ?? 1)));
 $max_page=$page->getNumber("SELECT Count(*) AS c FROM publications WHERE title LIKE '".$q."%'",$post);
 $posts=$post->displayPosts($pag,$q,$tri);
-/* dd($tri);
-exit; */
 ?>
 <main class="container mb-5">
     <h1>welcome hello</h1>
@@ -37,8 +35,8 @@ exit; */
             <?php endif;?>
         </div>
         <div class="d-flex col-md-5 ms-auto bd-highlight">
-        <?php if($pag<= $max_page): ?>
-            <a href="?<?=Config::urlHelper("p",$pag+1)?>" class="ms-auto  bd-highlight btn btn-warning">right</a>
+        <?php if($pag< $max_page):$t=$pag+1?>
+            <a href="?<?=Config::urlHelper("p",$t)?>" class="ms-auto  bd-highlight btn btn-warning">right</a>
             <?php endif;?>
         </div>
     </div>

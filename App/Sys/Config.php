@@ -101,8 +101,15 @@ class Config
     }
     public static function urlHelper($key,$val)
     {
-        return http_build_query(array_merge($_GET,[$key=>$val]));
-    }
+        unset($_GET['p']);
+        if(isset($_GET['url']))
+            unset($_GET['url']);
+        if($key=='p'){
+            return http_build_query(array_merge(array($key=>$val),$_GET));    
+        }else{
+            return http_build_query(array_merge($_GET,[$key=>$val]));
+        }
+}
     public static function timeSince($since) 
     {
         $since=time()-$since;
