@@ -82,17 +82,37 @@ class Categorie extends DBConnection
        }
    
     }
-
-    public function displayCats($i=null,$tri=null):array{
+    
+    /**
+     * displayCats
+     *
+     * @param  mixed $i
+     * @param  mixed $tri
+     * @return array
+     */
+    public function displayCats($i=null,$tri=null):array
+    {
+        $i-=1;
         $tri? $t="": $t="DESC";
         return $this->pdo->query("SELECT * FROM categorie ORDER BY id_cat ".$t." LIMIT 12 OFFSET ". 12*$i)->fetchAll();
-    }
+    }    
+    /**
+     * displayCat
+     *
+     * @param  mixed $id
+     * @return array
+     */
     public function displayCat($id):array{
         return $this->pdo->query("SELECT * FROM categorie WHERE id_cat='".$id."'")->fetch();
     }
-    
-    public function numberCats():array{
+/******************************************************************************************** */    
+    public function numberCats():array
+    {
         return $this->pdo->query("SELECT COUNT(*) as c FROM categorie")->fetch();
+    }
+    public function getNumber($query)
+    {
+        return $this->pdo->query($query)->fetch();
     }
     
 }

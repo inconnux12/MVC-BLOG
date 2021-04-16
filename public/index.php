@@ -4,7 +4,8 @@ use App\Categorie\Categorie;
 use App\Post\Post;
 use App\Sys\{
     Auth,
-    Config
+    Config,
+    Pagination
 };
 
 define('TIME_MS',microtime(true));
@@ -15,6 +16,7 @@ $user=new Auth();
 $post=new Post();
 $cat=new Categorie();
 $router=new AltoRouter();
+$page=new Pagination();
 $router->map('GET|POST','/','post/home');
 $router->map('GET|POST','/login','layout/login','login');
 $router->map('GET|POST','/logout','layout/logout','logout');

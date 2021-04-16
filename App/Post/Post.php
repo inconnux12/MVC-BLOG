@@ -111,21 +111,49 @@ class Post extends DBConnection
      * displayUsers
      *
      * @return array
+     */    
+    /**
+     * displayPosts
+     *
+     * @param  mixed $i
+     * @param  mixed $q
+     * @param  mixed $tri
+     * @return array
      */
-    public function displayPosts($i,$q,$tri):array{
+    public function displayPosts($i,$q,$tri):array
+    {
         $tri? $t="": $t="DESC";
+        $i-=1;
         return $this->pdo->query("SELECT * FROM publications WHERE title LIKE '".$q."%' ORDER BY id_pub ".$t." LIMIT 12 OFFSET ". 12*$i)->fetchAll();
     }
-    public function numberPosts($q):array{
-        return $this->pdo->query("SELECT COUNT(*) as c FROM publications where title LIKE '".$q."%'")->fetch();
-    }
+    /**
+     * displayPostsByCats
+     *
+     * @param  mixed $id
+     * @param  mixed $q
+     * @param  mixed $i
+     * @param  mixed $tri
+     * @return array
+     */
     public function displayPostsByCats($id,$q,$i,$tri):array{
         $tri? $t="": $t="DESC";
         return $this->pdo->query("SELECT * FROM publications WHERE id_cat='".$id."' AND title LIKE '".$q."%' ORDER BY id_pub ".$t." LIMIT 12 OFFSET ". 12*$i)->fetchAll();
-    }
+    }    
+    /**
+     * displayPost
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function displayPost($id){
         return $this->pdo->query("SELECT * FROM publications WHERE id_pub='".$id."'")->fetch();
-    }
+    }    
+    /**
+     * getIdBySlug
+     *
+     * @param  mixed $slug
+     * @return void
+     */
     public function getIdBySlug($slug)
     {
         $exist=$this->pdo->query("SELECT id_pub from publications where slug='".$slug."'")->fetch();
@@ -137,4 +165,14 @@ class Post extends DBConnection
    
     }
 
+/************************************************************************************************************************ */
+    public function numberPosts($q):array{
+        return $this->pdo->query("SELECT COUNT(*) as c FROM publications where title LIKE '".$q."%'")->fetch();
+    } 
+    
+    public function getNumber($query)
+    {
+        return $this->pdo->query($query)->fetch();
+    }
 }
+

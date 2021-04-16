@@ -1,13 +1,15 @@
 <?php
-use App\Sys\Config;
-
+use App\Sys\{
+    Config,
+    Pagination
+};
+$page->voidZero($_SERVER['REQUEST_URI']);
 $tittle="HOME";
-$page=(int)($_GET['p'] ?? 0);
 $q=($_GET['q'] ?? "");
 $tri=(int)($_GET['r'] ?? "0");
-$numPost=$post->numberPosts($q);
-$max_page=floor((int)$numPost['c']/12);
-$posts=$post->displayPosts($page,$q,$tri);
+$pag=($page->getPositive((int)($_GET['p'] ?? 1)));
+$max_page=$page->getNumber("SELECT Count(*) AS c FROM publications WHERE title LIKE '".$q."%'",$post);
+$posts=$post->displayPosts($pag,$q,$tri);
 /* dd($tri);
 exit; */
 ?>
@@ -30,13 +32,13 @@ exit; */
     </div>
     <div class="row d-flex bd-highlight mt-4">
         <div class="col-md-5">
-            <?php if($page >1): ?>
-            <a href="?<?=Config::urlHelper("p",$page-1)?>" class="btn btn-warning bd-highlight">left</a>
+            <?php if($pag >1):?>
+            <a href="<?=($pag!=2)? "?".Config::urlHelper("p",$pag-1):$page->voidZero($_SERVER['REQUEST_URI'])?>" class="btn btn-warning bd-highlight">left</a>
             <?php endif;?>
         </div>
         <div class="d-flex col-md-5 ms-auto bd-highlight">
-        <?php if($page< $max_page): ?>
-            <a href="?<?=Config::urlHelper("p",$page+1)?>" class="ms-auto  bd-highlight btn btn-warning">right</a>
+        <?php if($pag<= $max_page): ?>
+            <a href="?<?=Config::urlHelper("p",$pag+1)?>" class="ms-auto  bd-highlight btn btn-warning">right</a>
             <?php endif;?>
         </div>
     </div>

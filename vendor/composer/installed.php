@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '7bff3f2090ba7f4b3647023d45f351ccc04cebe9',
     'name' => 'inconnux12/mon_blog',
   ),
   'versions' => 
@@ -20,15 +20,6 @@
       ),
       'reference' => '127f6e96998708a31ef32252985bea82e3b03888',
     ),
-    'filp/whoops' => 
-    array (
-      'pretty_version' => '2.12.0',
-      'version' => '2.12.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'd501fd2658d55491a2295ff600ae5978eaad7403',
-    ),
     'fzaninotto/faker' => 
     array (
       'pretty_version' => 'v1.9.2',
@@ -40,21 +31,12 @@
     ),
     'inconnux12/mon_blog' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
-    ),
-    'psr/log' => 
-    array (
-      'pretty_version' => '1.1.3',
-      'version' => '1.1.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '0f73288fd15629204f9d42b7055f72dacbe811fc',
+      'reference' => '7bff3f2090ba7f4b3647023d45f351ccc04cebe9',
     ),
     'symfony/polyfill-mbstring' => 
     array (
