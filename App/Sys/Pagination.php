@@ -19,4 +19,24 @@ class Pagination
         }
         return $text[0].($text[1]??"");
     }
+    public static function urlHelper($key,$val)
+    {
+        unset($_GET['p']);
+        if(isset($_GET['url']))
+            unset($_GET['url']);
+        if($key=='p'){
+            return http_build_query(array_merge(array($key=>$val),$_GET));    
+        }else{
+            return http_build_query(array_merge($_GET,[$key=>$val]));
+        }
+    }
+    public function prePage()
+    {
+    
+        
+    }
+    public function nxtPage()
+    {
+        
+    }
 }

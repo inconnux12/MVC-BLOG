@@ -107,9 +107,13 @@ class Config
         if($key=='p'){
             return http_build_query(array_merge(array($key=>$val),$_GET));    
         }else{
+            if($key=='r' && $val=='0'){
+                $t=explode("&r=1",$_SERVER['REQUEST_URI']);
+                return count($t)==2?$t[0].$t[1]:explode("?r=1",$_SERVER['REQUEST_URI'])[0].explode("?r=1",$_SERVER['REQUEST_URI'])[1]; 
+            }
             return http_build_query(array_merge($_GET,[$key=>$val]));
         }
-}
+    }
     public static function timeSince($since) 
     {
         $since=time()-$since;

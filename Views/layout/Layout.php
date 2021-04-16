@@ -2,6 +2,8 @@
 
 use App\Sys\Config;
 
+/* dd($_GET['r']); */
+/* dd(($_GET['r']??'0')=='1'? "":"?".Config::urlHelper("r",'1')); */
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,7 +45,7 @@ use App\Sys\Config;
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
-        <li><a href="?<?=Config::urlHelper("r",'1')?>" class="nav-link px-2 text-white">Reverse</a></li>
+        <li><a href="<?=($_GET['r']??'0')=='1'? Config::urlHelper("r",'0'):"?".Config::urlHelper("r",'1')?>" class="nav-link px-2 text-white">Reverse</a></li>
         <?php if(isset($_SESSION['role'])&&$_SESSION['role']=='admin'):?>
         <li><a class="nav-link px-2 text-white" href="<?=$router->generate('adcat',['action'=>'cat'])?>">categorie</a></li>
         <li><a class="nav-link px-2 text-white" href="<?=$router->generate('admin')?>">posts</a></li>
