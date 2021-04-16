@@ -24,6 +24,7 @@ $router->map('GET|POST','/register','layout/register','register');
 $router->map('GET','/categorie/[:action]','categorie/categorie','categorie');
 $router->map('GET|POST','/post/[:action]','post/post','post');
 $router->map('GET|POST','/admin','admin/home','admin');
+$router->map('GET|POST','/admin/[a:action]','admin/home','adcat');
 $router->map('GET|POST','/admin/add/[:action]','admin/add','add');
 $router->map('GET|POST','/admin/edit/[:action]','admin/edit','edit');
 $router->map('GET|POST','/admin/delete/[:action]','admin/delete','delete');

@@ -92,7 +92,8 @@ class Categorie extends DBConnection
      */
     public function displayCats($i=null,$tri=null):array
     {
-        $i-=1;
+        if(isset($i))
+            $i-=1;
         $tri? $t="": $t="DESC";
         return $this->pdo->query("SELECT * FROM categorie ORDER BY id_cat ".$t." LIMIT 12 OFFSET ". 12*$i)->fetchAll();
     }    

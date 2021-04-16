@@ -5,10 +5,10 @@ use App\Sys\Config;
 $pag=($page->getPositive((int)($_GET['p'] ?? 1)));
 $q=($_GET['q'] ?? "");
 $tri=(int)($_GET['r'] ?? "0");
-if(!isset($_GET['t'])){
+if(!isset($match['params']['action'])){
         $max_page=$page->getNumber("SELECT Count(*) AS c FROM publications WHERE title LIKE '".$q."%'",$post);
         $posts=$post->displayPosts($pag,$q,$tri);
-    }elseif($_GET['t']=='cat'){
+    }elseif($match['params']['action']=='cat'){
         $max_page=$page->getNumber("SELECT Count(*) AS c FROM categorie WHERE title LIKE '".$q."%'",$cat);
         $posts=$cat->displayCats($pag,$tri);
     }else{
@@ -16,12 +16,12 @@ if(!isset($_GET['t'])){
     }
 ?>
 <main class="container mt-4 p-4" >
-<a href="<?=$router->generate('add', ['action' =>($_GET['t'])??'pub'])?>" class="btn btn-primary ">add</a>
+<a href="<?=$router->generate('add', ['action' =>($match['params']['action'])??'pub'])?>" class="btn btn-primary ">add</a>
   <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col">title</th>
-        <?php if(!isset($_GET['t'])):?>
+        <?php if(!isset($match['params']['action'])):?>
         <th scope="col">Description</th>
         <?php endif;?>
         <th class="text-center" scope="col">Options</th>
@@ -31,7 +31,7 @@ if(!isset($_GET['t'])){
         <?php foreach($posts as $res):?>
         <tr>
             <th scope="row"><?=$res['title']?></th>
-            <?php if(!isset($_GET['t'])):?>
+            <?php if(!isset($match['params']['action'])):?>
             <td><?=substr($res['desc_pub'],0,50)?></td>
             <?php endif;?>
             <td class="d-flex  justify-content-evenly"><a href="<?=$router->generate('edit', ['action' =>$res['slug']])?>" class="btn btn-warning ">edit</a><a href="<?=$router->generate('delete', ['action' =>$res['slug']])?>" class="btn btn-danger">delete</a></td>

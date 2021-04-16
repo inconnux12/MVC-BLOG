@@ -45,7 +45,7 @@ use App\Sys\Config;
         <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
         <li><a href="?<?=Config::urlHelper("r",'1')?>" class="nav-link px-2 text-white">Reverse</a></li>
         <?php if(isset($_SESSION['role'])&&$_SESSION['role']=='admin'):?>
-        <li><a class="nav-link px-2 text-white" href="<?=$router->generate('admin')?>?<?=Config::urlHelper("t","cat")?>">categorie</a></li>
+        <li><a class="nav-link px-2 text-white" href="<?=$router->generate('adcat',['action'=>'cat'])?>">categorie</a></li>
         <li><a class="nav-link px-2 text-white" href="<?=$router->generate('admin')?>">posts</a></li>
         <?php endif;?>
       </ul>

@@ -3,7 +3,6 @@
 use App\Sys\Config;
 
 $ptype=$match['params']['action'];
-$cats=$cat->displayCats();
 if(isset($_POST['sub'])){
     if($ptype=='cat'){
         $res=$cat->addCategorie($_POST['title'],Config::slugify($_POST['title']));
@@ -39,7 +38,7 @@ if(isset($_POST['sub'])){
         <label for="floatingInput">contain posts</label>
       </div>
       <select class="form-select" aria-label="Default select example " name="cat">
-      <?php foreach($cats as $c):?>
+      <?php foreach($cat->displayCats(null,null) as $c):?>
         <option value="<?=$c['id_cat']?>"><?=$c['title']?></option>
       <?php endforeach;?>
       </select>
