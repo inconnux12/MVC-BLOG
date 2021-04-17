@@ -1,23 +1,3 @@
-<?php
-$tittle='LOGIN';
-if(isset($_SESSION['login'])&&$_SESSION['login']){
-  if(isset($_SESSION['role'])&&$_SESSION['role']=='admin'){
-    header('Location: /admin');
-  }else{
-    header('Location: /');
-  }
-
-}
-else{
-  if(isset($_POST['submit'])){
-    $login=$user->Login($_POST['username'],$_POST['password']);
-    
-    if($login){
-      header('Location: /');
-    }
-  }
-}
-?>
 <link href="assets/dist/css/signin.css" type="text/css" rel="stylesheet">
 <div class="body">
   <main class="form-signin">

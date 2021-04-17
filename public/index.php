@@ -1,6 +1,11 @@
 <?php
 
 use App\Categorie\Categorie;
+use App\Controller\{
+    PostController,
+    UserController,
+    AdminController
+};
 use App\Post\Post;
 use Core\Sys\{
     Auth,
@@ -17,20 +22,44 @@ $post=Post::getInstance();
 $cat=Categorie::getInstance();
 $page=Pagination::getInstance();
 $router=new AltoRouter();
-$router->map('GET|POST','/','post/home');
-$router->map('GET|POST','/login','layout/login','login');
-$router->map('GET|POST','/logout','layout/logout','logout');
-$router->map('GET|POST','/register','layout/register','register');
-$router->map('GET','/categorie/[:action]','categorie/categorie','categorie');
-$router->map('GET|POST','/post/[:action]','post/post','post');
-$router->map('GET|POST','/admin','admin/home','admin');
-$router->map('GET|POST','/admin/[a:action]','admin/home','adcat');
-$router->map('GET|POST','/admin/add/[:action]','admin/add','add');
-$router->map('GET|POST','/admin/edit/[:action]','admin/edit','edit');
-$router->map('GET|POST','/admin/delete/[:action]','admin/delete','delete');
-/* $router->map('GET|POST','/login','layout/login','login');
-$router->map('GET|POST','/logout','layout/logout','logout');
- */
+$postController=new PostController($router);
+$adminController=new AdminController($router);
+$userController=new UserController();
+$GLOBALS['r']=$router;
+$router->map('GET|POST','/',function() use($postController){
+    $postController->home();
+});
+$router->map('GET','/categorie/[:action]',function() use($postController){
+    $postController->categorie();
+},'categorie');
+$router->map('GET|POST','/post/[:action]',function() use($postController){
+    $postController->post();
+},'post');
+$router->map('GET|POST','/login',function() use($userController){
+    $userController->login();
+},'login');
+$router->map('GET|POST','/logout',function() use($userController){
+    $userController->logout();
+},'logout');
+$router->map('GET|POST','/register',function() use($userController){
+    $userController->register();
+},'register');
+$router->map('GET|POST','/admin',function() use($adminController){
+    $adminController->home();
+},'admin');
+$router->map('GET|POST','/admin/[a:action]',function() use($adminController){
+    $adminController->home();
+},'adcat');
+$router->map('GET|POST','/admin/add/[:action]',function() use($adminController){
+    $adminController->add();
+},'add');
+$router->map('GET|POST','/admin/edit/[:action]',function() use($adminController){
+    $adminController->edit();
+},'edit');
+$router->map('GET|POST','/admin/delete/[:action]',function() use($adminController){
+    $adminController->delete();
+},'delete');
+
 $match = $router->match();
 if(is_array($match)){
     if(is_callable( $match['target'] ) ){

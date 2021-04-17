@@ -1,30 +1,3 @@
-<?php
-
-use Core\Sys\Config;
-
-$slug=$match['params']['action'];
-if(empty($post->getIdBySlug($slug))){
-    $ptype="cat";
-    $id=$cat->getIdBySlug($slug);
-    $res=$cat->displayCat($id);
-}else{
-    $ptype="pub";
-    $id=$post->getIdBySlug($slug);
-    $res=$post->displayPost($id);
-    $cats=$cat->displayCats();
-}
-if(isset($_POST['sub'])){
-    if($ptype=='pub'){
-        $post->modifyPost($id,$_POST['title'],$_POST['desc'],$_POST['cont'],Config::slugify($_POST['title']),(int)$_POST['cat']);
-        header('location: /admin');
-    }else{
-        $cat->modifyCategorie($id,$_POST['title'],Config::slugify($_POST['title']));
-        header('location: /admin?t=cat');
-    }
-}else{
-
-}
-?>
 <div class="body container mt-4">
   <main class="form-signin d-flex">
     <form class="col-md-8 m-auto" method="POST">

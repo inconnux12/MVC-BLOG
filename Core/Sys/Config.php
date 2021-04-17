@@ -64,7 +64,7 @@ class Config
      */
     public function __construct()
     {
-        self::$dir=dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR;
+        self::$dir=dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR.'App'.DIRECTORY_SEPARATOR;
         self::$View=self::$dir."Views".DIRECTORY_SEPARATOR;
         self::$View_admin=self::$View."admin".DIRECTORY_SEPARATOR;
         self::$View_post=self::$View."post".DIRECTORY_SEPARATOR;

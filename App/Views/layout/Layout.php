@@ -1,7 +1,7 @@
 <?php
 
 use Core\Sys\Config;
-
+$router=$GLOBALS['r'];
 ?>
 <!doctype html>
 <html lang="en">

@@ -1,26 +1,3 @@
-<?php
-
-use Core\Sys\Config;
-
-$ptype=$match['params']['action'];
-if(isset($_POST['sub'])){
-    if($ptype=='cat'){
-        $res=$cat->addCategorie($_POST['title'],Config::slugify($_POST['title']));
-        if($res){
-            header('location: /admin/cat');
-        }else{
-            echo "error";
-        }
-    }else{
-        $res=$post->addPost($_POST['title'],$_POST['desc'],$_POST['cont'],Config::slugify($_POST['title']),(int)$_POST['cat']);
-        if($res){
-            header('location: /admin');
-        }else{
-            echo "error";
-        }
-    }
-}
-?>
 <div class="body container mt-4">
   <main class="form-signin d-flex">
     <form class="col-md-8 m-auto" method="POST">

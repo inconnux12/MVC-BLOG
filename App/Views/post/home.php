@@ -3,13 +3,6 @@ use Core\Sys\{
     Config,
     Pagination
 };
-
-$tittle="HOME";
-$q=($_GET['q'] ?? "");
-$tri=(int)($_GET['r'] ?? "0");
-$page->getMaxPages("SELECT Count(*) AS c FROM publications WHERE title LIKE '".$q."%'",$post);
-$posts=$post->displayPosts($page->getOffset(),$q,$tri);
-
 ?>
 <main class="container mb-5">
     <h1>welcome hello</h1>
