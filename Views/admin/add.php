@@ -1,13 +1,13 @@
 <?php
 
-use App\Sys\Config;
+use Core\Sys\Config;
 
 $ptype=$match['params']['action'];
 if(isset($_POST['sub'])){
     if($ptype=='cat'){
         $res=$cat->addCategorie($_POST['title'],Config::slugify($_POST['title']));
         if($res){
-            header('location: /admin?t=cat');
+            header('location: /admin/cat');
         }else{
             echo "error";
         }

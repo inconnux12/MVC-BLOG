@@ -1,6 +1,6 @@
 <?php
 
-use App\Sys\Config;
+use Core\Sys\Config;
 
 ?>
 <!doctype html>

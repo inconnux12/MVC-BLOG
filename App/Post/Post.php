@@ -1,7 +1,7 @@
 <?php 
 namespace App\Post;
 
-use App\Sys\DBConnection;
+use Core\Sys\DBConnection;
 
 class Post extends DBConnection
 {
@@ -12,6 +12,15 @@ class Post extends DBConnection
     protected $contain;
     protected $created_at;
     protected $categorie;
+    private static $_instance;
+
+    public static function getInstance()
+    {
+        if(is_null(self::$_instance)){
+            self::$_instance=new Post();
+        }
+        return self::$_instance;
+    }
     public function __construct(){
         parent::__construct();
     }

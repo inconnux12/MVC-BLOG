@@ -1,7 +1,7 @@
 <?php
 namespace App\User;
 
-use App\Sys\DBConnection;
+use Core\Sys\DBConnection;
 
 class User extends DBConnection
 {    
@@ -29,6 +29,15 @@ class User extends DBConnection
      * @var mixed role of the user.
      */
     protected $role;    
+    private static $_instance;
+
+    public static function getInstance()
+    {
+        if(is_null(self::$_instance)){
+            self::$_instance=new User();
+        }
+        return self::$_instance;
+    }
     /**
      * __construct
      * inherit from DB. if don't exist create new instance of PDO
@@ -37,7 +46,8 @@ class User extends DBConnection
     public function __construct()
     {
         parent::__construct();
-    }    
+    }
+
     /**
      * addUser
      *create a new user and added to DB 
@@ -125,7 +135,7 @@ class User extends DBConnection
      * @param  mixed $username
      * @return int
      */
-    protected function getIdUser($username)
+    public function getIdUser($username)
     { 
         if(!empty($username)){
             $exist=$this->pdo->query("SELECT user_id from users where user_l_name='".$username."'")->fetch();

@@ -1,6 +1,6 @@
 <?php
 
-use App\Sys\Config;
+use Core\Sys\Config;
 
 $q=($_GET['q'] ?? "");
 $tri=(int)($_GET['r'] ?? "0");

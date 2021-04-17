@@ -19,9 +19,9 @@ class ComposerStaticInit1704b749a8795973bb6b44ab3e6026c3
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\VarDumper\\' => 28,
         ),
-        'F' => 
+        'C' => 
         array (
-            'Faker\\' => 6,
+            'Core\\' => 5,
         ),
         'A' => 
         array (
@@ -42,9 +42,9 @@ class ComposerStaticInit1704b749a8795973bb6b44ab3e6026c3
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
-        'Faker\\' => 
+        'Core\\' => 
         array (
-            0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
+            0 => __DIR__ . '/../..' . '/Core',
         ),
         'App\\' => 
         array (

@@ -1,10 +1,19 @@
 <?php
-namespace App\Sys;
+namespace Core\Sys;
 
 use App\User\User;
 
-class Auth extends User
+class Auth
 {
+    private static $_instance;
+
+    public static function getInstance()
+    {
+        if(is_null(self::$_instance)){
+            self::$_instance=new Auth();
+        }
+        return self::$_instance;
+    }
     /**
      * createSession
      *
@@ -38,8 +47,8 @@ class Auth extends User
     public function Login($username,$password)
     {
         $result=[];
-        if($id=(int)parent::getIdUser($username)){        
-            $users=$this->pdo->query("SELECT * FROM users WHERE user_id='".$id."'")->fetchAll();
+        if($id=(int)User::getInstance()->getIdUser($username)){        
+            $users=User::getInstance()->pdo->query("SELECT * FROM users WHERE user_id='".$id."'")->fetchAll();
             foreach($users as $user){
                 if($user['password']==$password){
                     $result['role']=(int)$user['role']?'admin':'user';

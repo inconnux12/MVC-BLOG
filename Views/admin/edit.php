@@ -1,6 +1,6 @@
 <?php
 
-use App\Sys\Config;
+use Core\Sys\Config;
 
 $slug=$match['params']['action'];
 if(empty($post->getIdBySlug($slug))){

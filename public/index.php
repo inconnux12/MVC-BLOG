@@ -2,7 +2,7 @@
 
 use App\Categorie\Categorie;
 use App\Post\Post;
-use App\Sys\{
+use Core\Sys\{
     Auth,
     Config,
     Pagination
@@ -11,12 +11,12 @@ use App\Sys\{
 define('TIME_MS',microtime(true));
 require_once dirname(__DIR__).DIRECTORY_SEPARATOR."vendor".DIRECTORY_SEPARATOR."autoload.php";
 session_start();
-new Config();
-$user=new Auth();
-$post=new Post();
-$cat=new Categorie();
+Config::getInstance();
+$user=Auth::getInstance();
+$post=Post::getInstance();
+$cat=Categorie::getInstance();
+$page=Pagination::getInstance();
 $router=new AltoRouter();
-$page=new Pagination();
 $router->map('GET|POST','/','post/home');
 $router->map('GET|POST','/login','layout/login','login');
 $router->map('GET|POST','/logout','layout/logout','logout');

@@ -1,6 +1,6 @@
 <?php
 
-use App\Sys\Config;
+use Core\Sys\Config;
 
 $id=(int)$cat->getIdBySlug($match["params"]['action']);
 $tittle="categorie ".$cat->getTitleById($id);

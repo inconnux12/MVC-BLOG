@@ -1,5 +1,5 @@
 <?php
-namespace App\Sys;
+namespace Core\Sys;
 
 use PDO;
 use PDOException;
@@ -12,7 +12,15 @@ class DBConnection
     protected $DBfetch_mod=PDO::FETCH_ASSOC;
     public $DBname="blog";
     public $pdo;
+    private static $_instance;
 
+    public static function getInstance()
+    {
+        if(is_null(self::$_instance)){
+            self::$_instance=new DBConnection();
+        }
+        return self::$_instance;
+    }
     public function __construct()
     {
         if(!isset($this->pdo)){    

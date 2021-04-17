@@ -1,5 +1,5 @@
 <?php 
-namespace App\Sys;
+namespace Core\Sys;
 
 class Pagination
 {       
@@ -14,7 +14,21 @@ class Pagination
      *
      * @var int
      */
-    private $currentPage;
+    private $currentPage;    
+    /**
+     * _instance
+     *
+     * @var mixed
+     */
+    private static $_instance;
+
+    public static function getInstance()
+    {
+        if(is_null(self::$_instance)){
+            self::$_instance=new Pagination();
+        }
+        return self::$_instance;
+    }
     
     /**
      * __construct

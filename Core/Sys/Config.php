@@ -1,5 +1,5 @@
 <?php
-namespace App\Sys;
+namespace Core\Sys;
 
 class Config
 {        
@@ -47,7 +47,21 @@ class Config
      *
      * @var mixed
      */
-    public static $host;
+    public static $host;   
+    private static $_instance;
+
+    public static function getInstance()
+    {
+        if(is_null(self::$_instance)){
+            self::$_instance=new Config();
+        }
+        return self::$_instance;
+    } 
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
         self::$dir=dirname(dirname(__DIR__)).DIRECTORY_SEPARATOR;

@@ -1,10 +1,19 @@
 <?php
 namespace App\Categorie;
 
-use App\Sys\DBConnection;
+use Core\Sys\DBConnection;
 
 class Categorie extends DBConnection
 {
+    private static $_instance;
+
+    public static function getInstance()
+    {
+        if(is_null(self::$_instance)){
+            self::$_instance=new Categorie();
+        }
+        return self::$_instance;
+    }
     public function deleteCategorie($id,$post)
     {
         if($this->verifyExist($id)){

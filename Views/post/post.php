@@ -1,6 +1,6 @@
 <?php
 
-use App\Sys\Config;
+use Core\Sys\Config;
 
 $id=(int)$post->getIdBySlug($match["params"]['action']);
 $res=$post->displayPost($id);
