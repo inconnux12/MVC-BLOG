@@ -2,8 +2,6 @@
 
 use App\Sys\Config;
 
-/* dd($_GET['r']); */
-/* dd(($_GET['r']??'0')=='1'? "":"?".Config::urlHelper("r",'1')); */
 ?>
 <!doctype html>
 <html lang="en">
@@ -74,6 +72,18 @@ use App\Sys\Config;
     </nav>
     <?php endif; ?>
         <?=$containe ?? '' ?>
+        <?php if(isset($page)):?>
+        <div class="container">
+          <div class="row d-flex bd-highlight mt-4">
+            <div class="col-md-5">
+              <?php $page->prePage()?>
+            </div>
+            <div class="d-flex col-md-5 ms-auto bd-highlight">
+              <?php $page->nxtPage()?>
+            </div>
+          </div>
+        </div>
+        <?php endif;?>
         <footer class="bg-light py-4 footer" style="position: relative;width:100%;bottom:0;">
             <div class="container">
               <?= round(1000*(microtime(true)-TIME_MS))."ms"?>
